@@ -1,0 +1,30 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Butter Fashion</title><link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/Butter_logo.png" type="image/png">
+<link rel="shortcut icon" href="images/Butter_logo.png" type="image/png">
+<link rel="apple-touch-icon" href="images/Butter_logo.png">
+    <script defer src="app.js"></script></head><body>
+<header class="topbar"><a class="brand" href="index.html">
+    <img src="images/Butter_logo.png" alt="logo">
+    <span>Butter<br><b>Fashion</b></span></a>
+    <nav class="nav show-desktop">
+        <a href="index.html#shop">Shop</a><a href="cart.html">Cart</a>
+        <a href="dashboard.html">Dashboard</a></nav><div class="icons">
+            <a href="cart.html">🛒 <b id="cartCount">0</b></a></div></header>
+<section class="page-hero"><p class="eyebrow">Checkout</p><h1>Complete your order</h1>
+</section><main class="checkout-layout"><form id="checkoutForm" class="form-card"><h2>Delivery details</h2>
+    <input required id="customerName" placeholder="Full name">
+    <input required id="customerEmail" type="email" placeholder="Email address">
+    <input required id="customerPhone" placeholder="Phone number">
+    <textarea required id="customerAddress" placeholder="Delivery address"></textarea>
+    <input id="couponCode" placeholder="Coupon code">
+    <button class="btn dark full">Place order</button></form>
+    <aside class="summary-card"><h2>Cart total</h2>
+        <div id="checkoutItems"></div>
+        <div class="summary-line">
+            <span>Total</span>
+            <b id="checkoutTotal">LKR 0.00</b></div></aside></main>
+            <footer><b>Butter Fashion</b><span>Checkout saves orders to admin dashboard</span></footer></body></html>

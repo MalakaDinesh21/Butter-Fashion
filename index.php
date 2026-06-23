@@ -1,0 +1,103 @@
+<?php
+require_once __DIR__ . '/db.php';
+// fetch products
+$stmt = $pdo->query('SELECT * FROM products ORDER BY created_at DESC LIMIT 20');
+$products = $stmt->fetchAll();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Butter Fashion | Premium Clothing Store</title>
+  <link rel="icon" href="images/Butter_logo.png" type="image/png">
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="app.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="index.php"><img src="images/Butter_logo.png" alt="Butter Fashion logo"><span><br><b></b></span></a>
+  <button class="hamb" id="menuBtn" aria-label="Open menu">☰</button>
+  <nav class="nav" id="mainNav">
+    <a href="#home">Home</a><a href="#shop">Shop</a>
+    <a href="#collections">Collections</a>
+    <a href="#about">About</a>
+    <a href="#blog">Blog</a>
+    <a href="#contact">Contact</a>
+    <a href="admin-login.php">Admin</a>
+  </nav>
+  <div class="icons"><a href="wishlist.php">♡ <b id="wishCount">0</b></a><a href="cart.php">🛒 <b id="cartCount">0</b></a></div>
+</header>
+
+<main id="home">
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">New season • Sri Lanka ready fashion</p>
+      <h1> Shop Butter Fashion.</h1>
+      <p>Modern clothing, accessories and everyday styles with a smooth shopping experience.</p>
+      <div class="hero-actions"><a class="btn dark" href="#shop">Shop collection</a><a class="btn light" href="#collections">Explore categories</a></div>
+    </div>
+    <div class="hero-model"><img src="images/hero.png" alt="Butter Fashion hero model" onerror="this.src='images/Full Sleeve Cover Shirt.jpg'"></div>
+  </section>
+
+  <section class="trust-strip">
+    <div><b>Fast Delivery</b><span>Island-wide delivery support</span></div>
+    <div><b>Secure Checkout</b><span>Demo checkout ready for presentation</span></div>
+    <div><b>24 Hour Service</b><span>Island wide support</span></div>
+  </section>
+
+  <section class="section" id="shop">
+    <div class="section-head"><div><p class="eyebrow">Online store</p><h2>Featured products</h2></div><div class="filters"><input id="searchBox" placeholder="Search products..."><select id="categoryFilter"><option value="All">All categories</option></select></div></div>
+    <div class="products grid4" id="shopProducts">
+      <?php foreach ($products as $p): ?>
+        <article class="product-card">
+          <img src="<?=htmlspecialchars($p['image'])?>" alt="<?=htmlspecialchars($p['title'])?>">
+          <h3><?=htmlspecialchars($p['title'])?></h3>
+          <p class="price"><?=htmlspecialchars($p['currency'])?> <?=number_format($p['price'],2)?></p>
+          <form method="post" action="cart.php">
+            <input type="hidden" name="product_id" value="<?= $p['id'] ?>">
+            <button class="btn dark" type="submit">Add to cart</button>
+          </form>
+          <form method="post" action="wishlist.php" style="margin-top:6px;">
+            <input type="hidden" name="product_id" value="<?= $p['id'] ?>">
+            <button class="btn light" type="submit">Add to wishlist</button>
+          </form>
+        </article>
+      <?php endforeach; ?>
+    </div>
+  </section>
+
+  <section class="promo-grid">
+    <article class="promo dark-promo"><p class="eyebrow">Weekend deal</p><h2>Fresh fits for every day</h2><p>Use coupon <b>BUTTER10</b> at checkout.</p>
+      <a class="btn light" href="#shop">Shop now</a></article>
+    <article class="promo"><p class="eyebrow">Accessories</p><h2>Complete your look</h2><p>Bags, hats and shoes selected for clean outfits.</p><a href="#shop">Explore →</a></article>
+  </section>
+
+  <section class="section soft" id="collections">
+    <div class="section-head"><div><p class="eyebrow">Browse</p><h2>Collections</h2></div></div>
+    <div class="collection-row" id="collectionCards"></div>
+  </section>
+
+  <section class="split-section" id="about">
+    <div><p class="eyebrow">About us</p><h2>
+      A modern fashion collection that matches to new trends.</h2></div>
+      </section>
+
+  <section class="section" id="blog">
+    <div class="section-head"><div><p class="eyebrow">Style blog</p>
+      <h2>Latest fashion ideas</h2></div></div>
+    <div class="blog-grid"><article><span>Guide</span>
+      <h3>How to build a simple streetwear outfit</h3><p>Start with neutral basics, then add one bold color or accessory.</p></article>
+      <article><span>Tips</span><h3>Choosing comfortable everyday clothing</h3><p>Focus on fabric, fit and easy matching across outfits.</p></article><article><span>New</span><h3>Why clean product photos matter</h3>
+      <p>Clear images build buyer trust and make products easier to compare.</p></article></div>
+  </section>
+
+  <section class="contact-section" id="contact">
+    <div><p class="eyebrow">Contact</p><h2>Need help with an order?</h2>
+    </div>
+    <form id="contactForm"><input required placeholder="Your name"><input required type="email" placeholder="Email address"><textarea required placeholder="Message"></textarea><button class="btn dark">Send message</button></form>
+  </section>
+</main>
+<footer></footer>
+</body>
+</html>

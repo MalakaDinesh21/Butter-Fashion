@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<script>
+if(localStorage.getItem("adminLoggedIn") !== "true"){
+    window.location.href = "admin-login.html";
+}
+</script>
+
+<button class="btn light" onclick="logout()">
+    Logout
+</button>
+
+<script>
+function logout(){
+    localStorage.removeItem("adminLoggedIn");
+    window.location.href = "admin-login.html";
+}
+</script>
+
+
+
+<html lang="en">
+    <head><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Butter Fashion</title>
+    <link rel="icon" href="images/Butter_logo.png" type="image/png">
+<link rel="shortcut icon" href="images/Butter_logo.png" type="image/png">
+<link rel="apple-touch-icon" href="images/Butter_logo.png">
+    <link rel="stylesheet" href="style.css"><script defer src="app.js"></script></head><body>
+<header class="admin-top">
+    <a class="brand" href="index.html">
+        <img src="images/Butter_logo.png" alt="logo">
+    <span><br>
+        <b></b></span></a>
+    <div><a class="btn light" href="index.html">View website</a>
+        <button id="logoutBtn" class="btn dark">Logout</button></div></header>
+<main class="dashboard-shell">
+    <aside class="side-nav">
+    <button data-tab="overview" class="active">Overview</button>
+    <button data-tab="products">Products</button><button data-tab="orders">Orders</button>
+    <button data-tab="customers">Customers</button>
+    <button data-tab="categories">Categories</button>
+    <button data-tab="coupons">Coupons</button>
+    <button data-tab="settings">Settings</button></aside>
+<section class="dashboard-content">
+<div class="dash-tab active" id="tab-overview">
+    <h1>Dashboard overview</h1>
+    <div class="stat-grid">
+        <article><span>Total Products</span>
+            <b id="statProducts">0</b></article><article><span>Orders</span>
+                <b id="statOrders">0</b></article><article><span>Customers</span>
+                    <b id="statCustomers">0</b></article><article><span>Revenue</span>
+                        <b id="statRevenue">LKR 0</b></article></div></div>
+<div class="dash-tab" id="tab-products"><h1>Products</h1>
+    <form id="productForm" class="admin-form">
+        <input id="pName" required placeholder="Product name">
+        <input id="pPrice" required type="number" placeholder="USD price">
+        <select id="pCategory"><option>Women</option><option>Men</option>
+            <option>Kids</option><option>Shoes</option><option>Accessories</option></select>
+            <input id="pBadge" placeholder="Badge"><input id="pImage" placeholder="Image path e.g. images/item.jpg">
+            <button class="btn dark">Add product</button></form><div id="adminProducts" class="admin-list"></div></div>
+<div class="dash-tab" id="tab-orders"><h1>Orders</h1>
+    <div id="adminOrders" class="admin-list"></div></div>
+<div class="dash-tab" id="tab-customers"><h1>Customers</h1>
+    <div id="adminCustomers" class="admin-list"></div></div>
+<div class="dash-tab" id="tab-categories"><h1>Categories</h1>
+    <div class="collection-row" id="adminCategories"></div></div>
+<div class="dash-tab" id="tab-coupons"><h1>Coupons</h1><form id="couponForm" class="admin-form">
+    <input id="couponName" placeholder="Coupon code">
+    <input id="couponDiscount" type="number" placeholder="Discount %">
+    <button class="btn dark">Add coupon</button></form>
+    <div id="adminCoupons" class="admin-list"></div></div>
+<div class="dash-tab" id="tab-settings"><h1>Settings</h1>
+    <form id="settingsForm" class="form-card"><input id="storeName" placeholder="Store name">
+        <input id="storeEmail" placeholder="Store email"><textarea id="storeNote" placeholder="Store notice"></textarea>
+        <button class="btn dark">Save settings</button></form></div>
+</section></main></body></html>
